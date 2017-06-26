@@ -11,7 +11,7 @@ NOMBRES = [
     'Oscar',
     'Alicia',
     'Maria',
-    'Brenda'
+    'Alexandra'
 ]
 
 CIUDADES = [
@@ -31,11 +31,22 @@ def generar_diccionario_estudiantes():
         estudiantes[nombre] = {
             'edad': random.randrange(16, 30),
             'anio': random.randrange(1, 5),
-            'cuidad': random.choice(CIUDADES)
+            'ciudad': random.choice(CIUDADES)
         }
 
     return estudiantes
-dic={'nombre':generar_diccionario_estudiantes()}
-for i in dic:
-    print(dic[i])
-    
+
+if __name__ == '__main__':
+    diccionario = generar_diccionario_estudiantes()
+    for llave, valor in diccionario.iteritems():
+        print llave, valor
+
+mensaje = 'el estudiante llamado {nombre} con la edad de: {edad}, y que habita en la ciudad de {ciudad} y cursa el ano {anio}'
+
+for nombre_estudiantes, datos in diccionario.iteritems():
+    print mensaje.format(nombre=nombre_estudiantes, edad=datos['edad'],ciudad=datos['ciudad'], anio = datos['anio'])
+
+mensaje = 'el estudiante {nombre} habita en la ciudad de {ciudad}'
+for nombre_estudiantes, datos in diccionario.iteritems():
+    if datos['ciudad'] == 'Managua':
+        print mensaje.format(nombre=nombre_estudiantes,ciudad=datos['ciudad'])
