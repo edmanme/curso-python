@@ -45,8 +45,15 @@ mensaje = 'el estudiante llamado {nombre} con la edad de: {edad}, y que habita e
 
 for nombre_estudiantes, datos in diccionario.iteritems():
     print mensaje.format(nombre=nombre_estudiantes, edad=datos['edad'],ciudad=datos['ciudad'], anio = datos['anio'])
-
+    f = open('archivo.txt', 'a')
+    f.write(mensaje.format(nombre=nombre_estudiantes, edad=datos['edad'], ciudad=datos['ciudad'], anio=datos['anio']))
+    f.close()
 mensaje = 'el estudiante {nombre} habita en la ciudad de {ciudad}'
 for nombre_estudiantes, datos in diccionario.iteritems():
     if datos['ciudad'] == 'Managua':
         print mensaje.format(nombre=nombre_estudiantes,ciudad=datos['ciudad'])
+        f = open('text.txt', 'a')
+        f.write(mensaje.format(nombre=nombre_estudiantes, edad=datos['edad'],ciudad=datos['ciudad'], anio = datos['anio']))
+        f.close()
+
+
