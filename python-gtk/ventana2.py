@@ -8,38 +8,40 @@ class MiVentana(Gtk.Window):
 		self.set_default_size(500,300)
 		self.connect('delete-event', Gtk.main_quit)
 		self.agregar_contenedor()
-		
+  		self.agregar_entrada()
+    		self.agregar_boton()
+
+
 
 	def agregar_contenedor(self):
-		contenedor = Gtk.Grid()
-		contenedor.set_column_homogeneous(True)
-		contenedor.set_row_homogeneous(False)
-		contenedor.attach(self.boton(), #elemento
-		0, #columna
-		0, #fila
-		3, #numero de columna a usar
-		1, #numero de filas a usar
+		self.contenedor = Gtk.Grid()
+		self.contenedor.set_column_homogeneous(True)
+		self.add(self.contenedor)
 
 
-		)
-		contenedor = Gtk.VBox()
-		contenedor.pack_start(boton, False, False, 0)
 
-	
-
-	def boton(self):
+	def agregar_boton(self):
 		self.boton = Gtk.Button('inicio')
+  		self.contenedor.attach_next_to(
+  		self.boton,
+    		self.entrada,
+      		Gtk.PositionType.BOTTOM,
+        	1,
+         	1
+
+  		)
 
 
 
-	def text(self):
-		entrada = Gtk.Entry()
-		entrada.get_text()
+	def agregar_entrada(self):
+		self.entrada = Gtk.Entry()
+		self.contenedor.attach(self.entrada,0,0,1,1)
 
 
 	def label(self):
 		etiqueta = Gtk.Label()
 		etiqueta.set_markup('texto a ingresar')
+
 
 if __name__ == '__main__':
 	ventana = MiVentana()
