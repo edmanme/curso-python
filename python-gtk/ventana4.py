@@ -24,14 +24,14 @@ class MiVentana(Gtk.Window):
 		self.boton = Gtk.Button('inicio')
 		self.contenedor.attach_next_to(
 		self.boton,
-			self.entrada,
-			Gtk.PositionType.BOTTOM,
-			1,
-			1
+		self.entrada,
+		Gtk.PositionType.BOTTOM,
+		1,
+		1
 
 		)
 
-		sel.boton.connect('clicked', self.agregar_fila)
+		self.boton.connect('clicked', self.agregar_fila)
 
 	def agregar_entrada(self):
 		self.entrada = Gtk.Entry()
@@ -39,19 +39,37 @@ class MiVentana(Gtk.Window):
 
 
 	def agregar_lista(self):
+		self.modelo = Gtk.ListStore(str, float)
+		self.lista_activos = Gtk.TreeView(self.modelo)
+		descripcion = Gtk.CellRendererText()
+		columna_descripcion = Gtk.TreeViewColumn(
+			'Descripcion',
+		descripcion ,
+		text=0
+		)
+		monto = Gtk.CellRendererText()
+		columna_monto = Gtk.TreeViewColumn('Monto',monto, text=1)
+
+		self.lista_activos.append_column(columna_descripcion)
+		self.lista_activos.append_column(columna_monto)
+
+		self.contenedor.attach_next_to(
+
+			self.lista_activos,
+			self,boton,
+			Gtk.PositionType.BOTTOM,
+			1,
+			1
+			)
+		
 
 
-
-    def agregar_fila(self):
+	def agregar_fila(self):
 		texto = self.entrada.get_text(
 		self.modelo.append([texto, 1.5])
 
 
 
-
-	def label(self):
-		etiqueta = Gtk.Label()
-		etiqueta.set_markup('texto a ingresar')
 
 
 if __name__ == '__main__':
