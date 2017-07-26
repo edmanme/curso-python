@@ -1,0 +1,6 @@
+[Activity]
+name = proyecto
+activity_version = 1 
+bundle_id groupproyect.proyecto
+exec = sugar-activity proyecto.continentes
+license =- GPLv3+
